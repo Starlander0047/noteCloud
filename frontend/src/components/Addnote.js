@@ -30,7 +30,7 @@ function Addnote() {
       </div>
       <div className="mb-3">
         <label htmlFor="tag" className="form-label">Tag:</label>
-        <input type="text" className="form-control" maxLength={13} title='Max Length 13' id="tag" name='tag' value={note.tag} onChange={onChange} />
+        <input type="text" className="form-control" maxLength={10} title='Max Length 10' id="tag" name='tag' value={note.tag} onChange={onChange} />
       </div>
       <button disabled={note.title.length<3 || note.description.length<5} type="submit" className="btn btn-primary" onClick={submitForm} >Add Note</button>
       </form>

@@ -32,7 +32,7 @@ function Login() {
         
     }
   return (
-    <div className='container my-4'>
+    <div style={{cursor: "none"}} className='container my-4'>
         <h2>Please Login to Continue</h2>
         <form onSubmit={handleOnSubmit} className='my-2'>
         <div className="mb-3">

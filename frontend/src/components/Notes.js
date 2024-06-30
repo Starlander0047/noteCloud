@@ -63,7 +63,7 @@ function Notes() {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="etag" className="form-label">Tag:</label>
-                  <input type="text" maxLength={13} className="form-control" id="etag" name='etag' value={newNote.etag} onChange={onChange} title='Max Length 13' />
+                  <input type="text" maxLength={10} className="form-control" id="etag" name='etag' value={newNote.etag} onChange={onChange} title='Max Length 10' />
                 </div>
               </form>
               {/* Code for the edit note form ends */}

@@ -20,8 +20,8 @@ const Navbar = () => {
     setBounce("");
   }
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div className="container-fluid">
+    <nav style={{cursor: "none"}} className="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div data-cursor="-inverse" className="container-fluid">
     <i onMouseOver={handleCloudUp} onMouseLeave={handleCloudLeave} className={`fa-solid fa-xl fa-cloud ${bounce} mx-2`} style={{color: "#74C0FC"}}></i>
     <Link onMouseOver={handleCloudUp} onMouseLeave={handleCloudLeave} className="navbar-brand" to="/">NoteCloud</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

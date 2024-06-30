@@ -36,7 +36,7 @@ function Signup() {
     }
   }
   return (
-    <div className='container my-3'>
+    <div style={{cursor: "none"}} className='container my-3'>
       <h2>Signup with NoteCloud to add your notes</h2>
         <form className='my-2' ref={formRef} onSubmit={handleOnSubmit}>
       <div className="mb-3">

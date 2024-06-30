@@ -2,7 +2,7 @@ import Notes from "./Notes"
 
 function Home() {
   return (
-    <div>
+    <div >
       <Notes/>
     </div>
   )
