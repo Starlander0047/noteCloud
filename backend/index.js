@@ -1,3 +1,4 @@
+// Start the server independently as it needs to load some environment variables(dont use concurrently from other directory)
 const connectToMongo = require("./db");
 connectToMongo();
 

@@ -8,6 +8,8 @@ const userSchema = new Schema({
     
     password: {type: String, required: true},
 
+    passresetcode: {type: Number, default: "0"},
+
     date: {type: Date, default: Date.now}
   });
 

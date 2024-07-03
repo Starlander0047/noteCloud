@@ -44,7 +44,7 @@ function Signup() {
         <input type="name" className="form-control" id="name" name="name" required minLength={3} aria-describedby="emailHelp"/>
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email address:</label>
+        <label htmlFor="email" className="form-label">Email address:</label> <span style={{fontSize: "12px"}} className='text-body-secondary'>Provide a working email(Gmail) for password recovery in future.</span>
         <input type="email" className="form-control" id="email" name="email" required aria-describedby="emailHelp"/>
       </div>
       <div className="mb-3">
