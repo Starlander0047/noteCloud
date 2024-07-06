@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/createuser",[
     body('name','Name should have atleast 3 characters').isLength({min: 3}),
     body('email',"Email should be valid").isEmail(),
-    body('password','Password should have atleast 5 characters').isLength({min: 5})
+    body('password','Password should have atleast 5 characters').isLength({min: 6})
  ], async (req,res)=>{
     let success = false;
     const errors = validationResult(req);
@@ -167,7 +167,6 @@ router.put("/genresetcode", async (req, res)=>{
               
               sendMailFunc().catch(console.error);
               // Send mail code ends here
-                console.log(rejected.length);
               if(rejected.length == 0) // If email was sent
                 {
                     // Save resetCode in DB
@@ -180,7 +179,11 @@ router.put("/genresetcode", async (req, res)=>{
                     }, 3000*60);
       
                   success=true;
-                  res.status(200).send({success, message: "Mail Sent to the Email for Password Recovery!"});
+                  res.status(200).send({success, message: "Successfully Sent Reset Code TO Email!"});
+                }
+                else
+                {
+                    res.status(500).send({success: false, error: "Can not send the Reset Code to email"});
                 }
         }
         
@@ -198,14 +201,13 @@ router.put("/resetpass", async (req, res)=>{ // will work only if we have the re
         const receivedResetCode = req.body.resetCode;
         const newPass = req.body.newPassword;
         const user = await User.findOne({email:email});
-        if(!user) return res.status(401).send({success, error: "User eith this Email Not Found!"});
+        if(!user) return res.status(401).send({success, error: "User with this Email Not Found!"});
         else
         {
             if(user.passresetcode === 0) res.status(403).send({success, error: "Password reset code expired or not generated!"});
             else
             {
                 const userResetCode = user.passresetcode;
-                console.log(receivedResetCode+" "+ userResetCode);
                 if(receivedResetCode != userResetCode) res.status(401).send({success, error: "Password Reset Code is not Matching!"});
                 else
                 {
@@ -218,7 +220,7 @@ router.put("/resetpass", async (req, res)=>{ // will work only if we have the re
                     user.save();
                     // Sending Response
                     success = true;
-                    res.status(200).send({success, message: "Password Changed Successfully"});
+                    res.status(200).send({success, message: "Password Reset Successfully"});
                 }
             }
         }
@@ -229,8 +231,33 @@ router.put("/resetpass", async (req, res)=>{ // will work only if we have the re
     }
 })
 //Route-6]Change Password: "api/auth/changepass", Login Required
-// router.put("/changepass", ,(req, res) =>{
+router.put("/changepass", fetchuser, async (req, res) =>{
+    // Request would have an oldPass, newPass and an authToken
+    let success = false;
+    const claimedCurrentPass = req.body.currentPass;
+    const newPass = req.body.newPass;
+    try {
+        const user = await User.findById(req.user.id);
+        const userOldPass = user.password; // This one is in the form of hash
+        const passwordCompare = await bcrypt.compare(claimedCurrentPass, userOldPass);
+        if(!passwordCompare) res.status(401).send({success, error: "Old Password Not Matching!"});
+        else
+        {
+            // Hashing
+            const salt = await bcrypt.genSalt(10);
+            const secPass = await bcrypt.hash(newPass, salt);
+            // Saving in DB
+            user.password = secPass;
+            user.save();
+            // Sending Response
+            success = true;
+            res.status(200).send({success, message: "Password Changed Successfully!"});
+        }
 
-// })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({success, error: "Internal Server Error"});
+    }
+})
 
 module.exports = router;

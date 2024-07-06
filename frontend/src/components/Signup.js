@@ -1,8 +1,9 @@
-import React, {useRef, useContext} from 'react'
+import React, {useRef, useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AlertContext from '../contexts/alert/AlertContext';
 
 function Signup() {
+  const [hidden, setHidden] = useState(true); // To show or hide password during password change
   const contextForAlert = useContext(AlertContext);
   const {showAlert} = contextForAlert;
   const navigate = useNavigate();
@@ -35,6 +36,11 @@ function Signup() {
       showAlert("danger", "This Email Might be Already Taken!");
     }
   }
+  // To Show Or Hide Password
+  const showHidePass = () =>{
+    if(hidden) setHidden(false);
+    else setHidden(true);
+  }
   return (
     <div style={{cursor: "none"}} className='container my-3'>
       <h2>Signup with NoteCloud to add your notes</h2>
@@ -49,7 +55,8 @@ function Signup() {
       </div>
       <div className="mb-3">
         <label htmlFor="password" className="form-label">Password:</label>
-        <input autoComplete='true' type="password" className="form-control" required minLength={5} name="password" id="password"/>
+        <input autoComplete='true' title='Password Should Atleast Have 6 Characters' type={hidden?`password`:"text"} className="form-control" required minLength={6} name="password" id="password"/>
+        <i onClick={showHidePass} class={`fa-solid fa-eye${hidden?"-slash":""}`} style={{color: "#B197FC", cursor: "pointer"}}></i>
       </div>
       <div className="mb-3">
         <label htmlFor="cpassword" className="form-label">Confirm password:</label>

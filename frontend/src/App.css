@@ -2,6 +2,17 @@
 .mf-cursor.-inverse:before {
   background: #fff;
 }
+/* Navbar */
+#userName
+{
+  color: white;
+  cursor: pointer;
+}
+#userName:hover
+{
+  color: #98caef;
+}
+
 
 .App {
   text-align: center;

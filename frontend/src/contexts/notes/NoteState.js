@@ -6,6 +6,8 @@ const HOST = "http://127.0.0.1:5000";
 
 
 const NoteState = (props) =>{
+    // State to store the total number of notes
+    const [totalNotes, setTotalNotes] = useState(0);
     //Code Related to Alert
     const contextRelatedToAlert = useContext(AlertContext);
     const {showAlert} = contextRelatedToAlert;
@@ -31,6 +33,10 @@ const NoteState = (props) =>{
         // Fetching userNotes
         const dataNotes = await fetch(`${HOST}/api/notes/fetchallnotes`, paramsNotes);
         const parsedDataNotes = await dataNotes.json();
+
+        //Calculating total number of notes
+        setTotalNotes(parsedDataNotes.length);
+
         // Fetching userDetails
         const dataUserDetails = await fetch(`${HOST}/api/auth/getuser`, paramsUserDetails);
         const parsedDataUserDetails = await dataUserDetails.json();
@@ -116,6 +122,8 @@ const NoteState = (props) =>{
             updateNote,
             //Things for Delete Note
             deleteNote,
+            //State storing total Number of notes
+            totalNotes,
         }} >
             {props.children}
         </NoteContext.Provider>
