@@ -56,7 +56,7 @@ function Signup() {
       <div className="mb-3">
         <label htmlFor="password" className="form-label">Password:</label>
         <input autoComplete='true' title='Password Should Atleast Have 6 Characters' type={hidden?`password`:"text"} className="form-control" required minLength={6} name="password" id="password"/>
-        <i onClick={showHidePass} class={`fa-solid fa-eye${hidden?"-slash":""}`} style={{color: "#B197FC", cursor: "pointer"}}></i>
+        <i onClick={showHidePass} className={`fa-solid fa-eye${hidden?"-slash":""}`} style={{color: "#B197FC", cursor: "pointer"}}></i>
       </div>
       <div className="mb-3">
         <label htmlFor="cpassword" className="form-label">Confirm password:</label>

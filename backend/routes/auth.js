@@ -30,9 +30,10 @@ router.post("/createuser",[
         //checking if user with this email already exists
         let user = await User.findOne({email: data.email})
         if(user)
-        {
-            return res.status(400).json({ success, error: "This email is already used!"})
-        }
+            {
+                return res.status(400).json({ success, error: "This email is already used!"})
+            }
+            console.log("Here\n");
         //Hashing
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(data.password, salt)
@@ -157,8 +158,8 @@ router.put("/genresetcode", async (req, res)=>{
                   from: '"NoteCloud" <starmailservice0047@gmail.com>', // sender address
                   to: recipientMailAddr, // list of receivers
                   subject: "Password Recovery Code", // Subject line
-                  text: `The Password Reset Code For NoteCloud Account: ${resetCode}\nCode Expires in 3 Minutes\n\n-NoteCloud`, // plain text body
-                  html: `<h2>The Password Reset Code For NoteCloud Account: ${resetCode}</h2><h3>Code Expires in 3 Minutes</h3>-NoteCloud`, // html body
+                  text: `Password Reset Code For Your NoteCloud Account: ${resetCode}\nCode Expires in 3 Minutes\n\n-NoteCloud`, // plain text body
+                  html: `<h2>Password Reset Code For Your NoteCloud Account: ${resetCode}</h2><h3>Code Expires in 3 Minutes</h3>-NoteCloud`, // html body
                 });
               
                 console.log("Message sent: %s", info.accepted);
@@ -258,6 +259,10 @@ router.put("/changepass", fetchuser, async (req, res) =>{
         console.log(error);
         res.status(500).send({success, error: "Internal Server Error"});
     }
+})
+// An API Just to test the Server
+router.get("/testNoteCloud", (req, res) =>{
+    res.status(200).send({success: true, message: "Server is live"});
 })
 
 module.exports = router;
