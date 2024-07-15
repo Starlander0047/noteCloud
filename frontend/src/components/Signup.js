@@ -24,7 +24,7 @@ function Signup() {
         },
         body: JSON.stringify({name: formRef.current.name.value, email: formRef.current.email.value, password: formRef.current.password.value})
     }
-    const data = await fetch("http://127.0.0.1:5000/api/auth/createuser",params);
+    const data = await fetch(`${process.env.HOST}/api/auth/createuser`,params);
     const parsedData = await data.json();
     if(parsedData.success)
     {

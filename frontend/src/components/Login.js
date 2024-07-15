@@ -27,7 +27,7 @@ function Login() {
             },
             body: JSON.stringify({email: recoveryEmail})
           }
-          const data = await fetch("http://127.0.0.1:5000/api/auth/genresetcode", params);
+          const data = await fetch(`${process.env.HOST}/api/auth/genresetcode`, params);
           const parsedData = await data.json();
         if(parsedData.success)
         {
@@ -75,7 +75,7 @@ function Login() {
             },
             body: JSON.stringify({email: creds.emailModal, resetCode: creds.passResetCode, newPassword: creds.newPass})
           }
-          const data = await fetch("http://127.0.0.1:5000/api/auth/resetpass", params);
+          const data = await fetch(`${process.env.HOST}/api/auth/resetpass`, params);
           const parsedData = await data.json();
         if(parsedData.success)
         {
@@ -112,7 +112,7 @@ function Login() {
             },
             body: JSON.stringify({email: emailRef.current.value, password: passwordRef.current.value})
         }
-        const data = await fetch("http://127.0.0.1:5000/api/auth/login",params);
+        const data = await fetch(`${process.env.HOST}/api/auth/login`,params);
         const parsedData = await data.json();
         if(parsedData.success)
         {

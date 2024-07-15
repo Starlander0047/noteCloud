@@ -13,7 +13,7 @@ app.use(express.json()); ///Middleware
 
 // An API Just to test the Server
 app.get("/", (req, res) =>{
-    res.status(200).send({success: true, message: "Server is live"});
+    res.status(200).json({success: true, message: "Server is live"});
 })
 //Available Routes
 app.use("/api/auth",require("./routes/auth.js"))
