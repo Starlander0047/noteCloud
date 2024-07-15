@@ -33,7 +33,6 @@ router.post("/createuser",[
             {
                 return res.status(400).json({ success, error: "This email is already used!"})
             }
-            console.log("Here\n");
         //Hashing
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(data.password, salt)
