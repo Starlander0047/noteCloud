@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import NoteContext from "./NoteContext";
 import AlertContext from "../alert/AlertContext";
 //Defing Global Data
-const HOST = "http://127.0.0.1:5000";
+const HOST = "https://note-cloud-api.vercel.app/";
 
 
 const NoteState = (props) =>{
