@@ -260,9 +260,5 @@ router.put("/changepass", fetchuser, async (req, res) =>{
         res.status(500).send({success, error: "Internal Server Error"});
     }
 })
-// An API Just to test the Server
-router.get("/testNoteCloud", (req, res) =>{
-    res.status(200).send({success: true, message: "Server is live"});
-})
 
 module.exports = router;
