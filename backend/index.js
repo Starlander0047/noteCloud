@@ -6,7 +6,11 @@ const express = require('express')
 const app = express();
 const port = 5000;
 const cors = require('cors')
-app.use(cors());
+app.use(cors({
+    origin: ["https://note-cloud-frontend.vercel.app"],
+    methods: ["POST", "PUT", "DELETE", "GET"],
+    credentials: true
+}));
 
 
 app.use(express.json()); ///Middleware
