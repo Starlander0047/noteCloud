@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import AlertContext from '../contexts/alert/AlertContext';
+const HOST = "https://note-cloud-api.vercel.app";
 
 
 function Login() {
@@ -27,7 +28,7 @@ function Login() {
             },
             body: JSON.stringify({email: recoveryEmail})
           }
-          const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/genresetcode`, params);
+          const data = await fetch(`${HOST}/api/auth/genresetcode`, params);
           const parsedData = await data.json();
         if(parsedData.success)
         {
@@ -75,7 +76,7 @@ function Login() {
             },
             body: JSON.stringify({email: creds.emailModal, resetCode: creds.passResetCode, newPassword: creds.newPass})
           }
-          const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/resetpass`, params);
+          const data = await fetch(`${HOST}/api/auth/resetpass`, params);
           const parsedData = await data.json();
         if(parsedData.success)
         {
