@@ -1,6 +1,7 @@
 import React, {useRef, useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AlertContext from '../contexts/alert/AlertContext';
+const HOST = "https://note-cloud-api.vercel.app";
 
 function Signup() {
   const [hidden, setHidden] = useState(true); // To show or hide password during password change
@@ -24,7 +25,7 @@ function Signup() {
         },
         body: JSON.stringify({name: formRef.current.name.value, email: formRef.current.email.value, password: formRef.current.password.value})
     }
-    const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/createuser`,params);
+    const data = await fetch(`${HOST}/api/auth/createuser`,params);
     const parsedData = await data.json();
     if(parsedData.success)
     {

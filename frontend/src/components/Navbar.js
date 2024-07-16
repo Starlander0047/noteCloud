@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import NoteContext from '../contexts/notes/NoteContext';
+const HOST = "https://note-cloud-api.vercel.app";
 
 const Navbar = () => {
   const modalButtonRef = useRef(null);
@@ -31,7 +32,7 @@ const Navbar = () => {
       },
       body: JSON.stringify({currentPass: cred.currentPass, newPass: cred.newPass})
     }
-    const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/changepass`, params);
+    const data = await fetch(`${HOST}/api/auth/changepass`, params);
     const parsedData = await data.json();
     if(parsedData.success)
     {
