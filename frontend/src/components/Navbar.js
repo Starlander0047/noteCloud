@@ -31,7 +31,7 @@ const Navbar = () => {
       },
       body: JSON.stringify({currentPass: cred.currentPass, newPass: cred.newPass})
     }
-    const data = await fetch("http://127.0.0.1:5000/api/auth/changepass", params);
+    const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/changepass`, params);
     const parsedData = await data.json();
     if(parsedData.success)
     {
