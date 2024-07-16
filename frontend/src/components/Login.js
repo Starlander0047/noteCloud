@@ -34,6 +34,11 @@ function Login() {
         {
             setRecoveryEmail("");
             modalOpenRef.current.click();
+            document.getElementById("forgetPassSuccessMessage").style.color = "green";
+            document.getElementById("forgetPassSuccessMessage").innerHTML = parsedData.message;
+            setTimeout(() => {
+                document.getElementById("forgetPassSuccessMessage").innerHTML = "";
+                }, 5000);
             startTimer(3, 0);
         }
         else
@@ -166,6 +171,7 @@ function Login() {
                 <button onClick={()=>{setCreds({newPass: "", emailModal: "", confirmNewPass: "", passResetCode: ""});}} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
+            <span id='forgetPassSuccessMessage' ></span>
                 <div className='d-flex justify-content-center align-items-center'> 
                         <b style={{fontSize: "350%"}}>{timer.minutes<10?"0"+timer.minutes:timer.minutes}:{timer.seconds<10?"0"+timer.seconds:timer.seconds}</b>
                 </div>

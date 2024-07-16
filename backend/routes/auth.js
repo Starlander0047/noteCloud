@@ -175,11 +175,11 @@ router.put("/genresetcode", async (req, res)=>{
                     // resetCode can work only for 3 minutes
                     setTimeout(() => {
                       user.passresetcode = 0;
-                      user.save();
+                        user.save();
                     }, 3000*60);
       
                   success=true;
-                  res.status(200).send({success, message: "Successfully Sent Reset Code TO Email!"});
+                  res.status(200).send({success, message: "Successfully Sent Reset Code To Email!"});
                 }
                 else
                 {
