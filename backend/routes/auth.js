@@ -176,7 +176,7 @@ router.put("/genresetcode", async (req, res)=>{
                     setTimeout(() => {
                       user.passresetcode = 0;
                         user.save();
-                    }, 3000*60);
+                    }, 180000);
       
                   success=true;
                   res.status(200).send({success, message: "Successfully Sent Reset Code To Email!"});
