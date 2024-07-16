@@ -112,7 +112,7 @@ function Login() {
             },
             body: JSON.stringify({email: emailRef.current.value, password: passwordRef.current.value})
         }
-        const data = await fetch(`${process.env.REACT_APP_HOST}/api/auth/login`,params);
+        const data = await fetch(`https://note-cloud-api.vercel.app/api/auth/login`,params);
         const parsedData = await data.json();
         if(parsedData.success)
         {
