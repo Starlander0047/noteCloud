@@ -154,6 +154,7 @@ function Login() {
             <input type="email" name="forgetPassEmail" value={recoveryEmail} onChange={handleForgetPassInput} id="forgetPassEmail" />
             <span id='forgetPassStatusSpan' ></span>
             <button onClick={generatePassResetCode} className='btn btn-primary btn-sm mt-2'>Generate Reset Code</button>
+            <span style={{"color": "red", "fontSize": "13px"}} >*Due to slower server, if you dont receive an email, please generate it multiple times and use the most recent reset code.</span>
         </div>
     </div>
     {/* Code For Modal Starts */}
